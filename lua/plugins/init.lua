@@ -300,9 +300,10 @@ local default_plugins = {
   {
     "ggandor/leap.nvim",
     init = function()
-      require("plugins.config.leap")
+      require("plugins.configs.leap")
       require("leap").add_default_mappings()
     end,
+    lazy = false,
   },
 
   
@@ -315,6 +316,8 @@ local default_plugins = {
     end,
     lazy = false,
   },
+
+  -- Multiple cursors
 
 }
 
