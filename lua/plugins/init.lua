@@ -262,6 +262,60 @@ local default_plugins = {
       require("which-key").setup(opts)
     end,
   },
+
+  -- Auto save
+  {
+    "pocco81/auto-save.nvim",
+    init = function()
+      require("auto-save").setup()
+    end,
+    lazy = false,
+  },
+
+  --Scrolling
+  {
+    "karb94/neoscroll.nvim",
+    init = function()
+      require("neoscroll").setup({
+        mappings = {'<C-u>', '<C-d>', 'zt', 'zz', 'zb'},
+      })
+    end,
+    lazy = false,
+  },
+
+  -- Highlight Yank
+  {
+    'gbprod/yanky.nvim',
+    init = function()
+      require("yanky").setup({
+        highlight = {
+          timer = 150,
+        },    
+      })
+    end,
+    
+  },
+
+  -- Leaping around text
+  {
+    "ggandor/leap.nvim",
+    init = function()
+      require("plugins.config.leap")
+      require("leap").add_default_mappings()
+    end,
+  },
+
+  
+  -- Latex Compile
+  {
+    "lervag/vimtex",
+    init = function()
+      require("plugins.configs.vimtex")
+      require("")
+    end,
+    lazy = false,
+  },
+
 }
 
 local config = require("core.utils").load_config()

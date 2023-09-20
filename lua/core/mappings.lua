@@ -16,7 +16,21 @@ M.general = {
   },
 
   n = {
+
+    -- Easy Quitting
+    ["<leader>qq"] = {":qa!<CR>", "Quickly close out of all files"},
+
+    -- Tab text over quickly
+    [">"] = {">>", "Quickly tab text right"},
+    ["<"] = {"<<", "Quickly tab text left"},
+
+    -- Close files to right and left
+    ["<Leader>op"] = {"<C-l>:q!<CR>", "Close right vertical pane"},
+    ["<Leader>po"] = {"<C-h>:q!<CR>", "Close left vertical pane"},
+
+    --Clear highlighting
     ["<leader><CR>"] = { ":noh <CR>", "Clear highlights" },
+    
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
