@@ -16,6 +16,8 @@ opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
 -- Indenting
+opt.swapfile = false
+opt.compatible = false
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.smartindent = true
@@ -41,9 +43,10 @@ opt.splitright = true
 opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
+opt.scrolloff = 8
 
 -- interval for writing swap file to disk, also used by gitsigns
-opt.updatetime = 250
+opt.updatetime = 100
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
