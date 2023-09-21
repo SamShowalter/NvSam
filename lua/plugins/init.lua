@@ -307,17 +307,28 @@ local default_plugins = {
   },
 
   
-  -- Latex Compile
+  -- -- Latex Compile
+  -- {
+  --   "lervag/vimtex",
+  --   init = function()
+  --     require("plugins.configs.vimtex")
+  --     require("")
+  --   end,
+  --   lazy = false,
+  -- },
+  --
+  -- Multiple cursors
+  --
+  --
+  -- Vim Wiki
   {
-    "lervag/vimtex",
+    "vimwiki/vimwiki",
     init = function()
-      require("plugins.configs.vimtex")
-      require("")
+      require("plugins.configs.vimwiki")
     end,
+
     lazy = false,
   },
-
-  -- Multiple cursors
 
 }
 

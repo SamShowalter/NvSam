@@ -290,6 +290,7 @@ M.telescope = {
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
+    ["<leader>fw"] = { "<cmd> Telescope find_files search_dirs={'" .. WIKI_DIR .. "'} <CR>", "Find Vim Wiki Files" },
     -- ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git

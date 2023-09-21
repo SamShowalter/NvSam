@@ -3,7 +3,7 @@
 -- ===========================================================
 
 -- Set up where the wiki lists should be
-let g:vimwiki_list = {{path = WIKI_DIR,
+vim.g.vimwiki_list = {{path = WIKI_DIR,
                        syntax = 'markdown', 
                        ext = '.md'}}
 
