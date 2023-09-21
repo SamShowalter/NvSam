@@ -17,6 +17,25 @@ M.general = {
 
   n = {
 
+    
+    -- Directory change information
+    -- " Change current working directory to the current file 
+    -- map <Leader>cd :cd %:p:h<CR>:pwd<CR>
+    --
+    -- " Move up a directory
+    -- nnoremap <Leader>ud :cd ..<CR>
+
+    -- Better copy and pasting
+    ["<leader>d"] = {"d", "Copying content with standard d"},
+    ["<leader>D"] = {"D", "Copying content with standard D"},
+    ["d"] = {"_d", "Delete content with black hole register"},
+    ["D"] = {"_D", "Delete content with black hole register"},
+    ["x"] = {"_x", "Delete letter with black hole register"},
+    ["x"] = {"_c", "Change content with black hole register"},
+
+    -- Copy filepaths
+    ["<Leader>pc"] = {"let @+=expand('%:t')<CR>", "Copy filepath to use later"},
+    
     -- Easy Quitting
     ["<leader>qq"] = {":qa!<CR>", "Quickly close out of all files"},
 
@@ -73,6 +92,16 @@ M.general = {
   },
 
   v = {
+
+    --Make visual copy and pasting better
+    ["<leader>d"] = {"d", "Copying content with standard d"},
+    ["d"] = {"_d", "Delete content with black hole register"},
+    ["x"] = {"_x", "Delete letter with black hole register"},
+    ["x"] = {"_c", "Change content with black hole register"},
+    
+    -- visual shifting of blocks for easier use 
+    ["J"] = {":m '>1<CR>gv=gv", "Visual shifting of lines up"},
+    ["K"] = {":m '<-2<CR>gv=gv", "Visual shifting of lines down"},
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
@@ -111,6 +140,7 @@ M.tabufline = {
     ["<leader>s"] = {
       function()
         require("nvchad.tabufline").close_buffer()
+        require("nvchad.tabufline").tabuflinePrev() -- Make it more like I am used to
       end,
       "Close buffer",
     },
@@ -285,7 +315,7 @@ M.telescope = {
   n = {
     -- find
     ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
-    -- ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
+    ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     -- ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
@@ -307,26 +337,21 @@ M.telescope = {
   },
 }
 
+M.leap = {
+  plugin = true,
+  
+  n = {
+    ["<leader>lj"] = {"<cmd>lua leap_to_line_forward()<CR>", "Leap to specific line down"},
+    ["<leader>lk"] = {"<cmd>lua leap_to_line_backwards()<CR>", "Leap to specific line up"},
+  },
+}
+
 M.nvterm = {
   plugin = true,
 
   t = {
-    -- toggle in terminal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
-    },
 
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
+    ["<leader>nt"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
@@ -335,42 +360,14 @@ M.nvterm = {
   },
 
   n = {
-    -- toggle in normal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
-    },
-
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
+    
+    ["<leader>nt"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
       "Toggle vertical term",
     },
 
-    -- new
-    ["<leader>h"] = {
-      function()
-        require("nvterm.terminal").new "horizontal"
-      end,
-      "New horizontal term",
-    },
-
-    ["<leader>v"] = {
-      function()
-        require("nvterm.terminal").new "vertical"
-      end,
-      "New vertical term",
-    },
   },
 }
 
@@ -384,13 +381,14 @@ M.whichkey = {
       end,
       "Which-key all keymaps",
     },
-    ["<leader>wK"] = {
-      function()
-        local input = vim.fn.input "WhichKey: "
-        vim.cmd("WhichKey " .. input)
-      end,
-      "Which-key query lookup",
-    },
+    
+    -- ["<leader>wK"] = {
+    --   function()
+    --     local input = vim.fn.input "WhichKey: "
+    --     vim.cmd("WhichKey " .. input)
+    --   end,
+    --   "Which-key query lookup",
+    -- },
   },
 }
 

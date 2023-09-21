@@ -301,25 +301,29 @@ local default_plugins = {
     "ggandor/leap.nvim",
     init = function()
       require("plugins.configs.leap")
+      require("core.utils").load_mappings "leap"
       require("leap").add_default_mappings()
     end,
     lazy = false,
   },
 
   
-  -- -- Latex Compile
-  -- {
-  --   "lervag/vimtex",
-  --   init = function()
-  --     require("plugins.configs.vimtex")
-  --     require("")
-  --   end,
-  --   lazy = false,
-  -- },
-  --
+  -- Latex Compile
+  {
+    "lervag/vimtex",
+    init = function()
+      require("plugins.configs.vimtex")
+    end,
+    lazy = false,
+  },
+  
   -- Multiple cursors
-  --
-  --
+  {
+   'mg979/vim-visual-multi' ,
+    lazy = false,
+  },
+  
+  
   -- Vim Wiki
   {
     "vimwiki/vimwiki",
