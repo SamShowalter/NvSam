@@ -32,8 +32,8 @@ local options = {
   },
   renderer = {
     root_folder_label = false,
-    highlight_git = false,
     highlight_opened_files = "none",
+    highlight_git = true,
 
     indent_markers = {
       enable = false,
@@ -44,7 +44,7 @@ local options = {
         file = true,
         folder = true,
         folder_arrow = true,
-        git = false,
+        git = true,
       },
 
       glyphs = {
@@ -61,6 +61,7 @@ local options = {
           arrow_closed = "",
         },
         git = {
+          enabled=true,
           unstaged = "✗",
           staged = "✓",
           unmerged = "",
@@ -69,6 +70,7 @@ local options = {
           deleted = "",
           ignored = "◌",
         },
+
       },
     },
   },

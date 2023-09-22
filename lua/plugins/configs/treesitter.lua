@@ -1,5 +1,25 @@
 local options = {
-  ensure_installed = { "lua" },
+
+  ensure_installed = {
+    "vim",
+    "lua",
+    "html",
+    "css",
+    "javascript",
+    "typescript",
+    "python",
+    "tsx",
+    "c",
+    "markdown",
+    "markdown_inline",
+  },
+
+  -- indent = {
+  --   enable = true,
+  --   -- disable = {
+  --   --   "python"
+  --   -- },
+  -- },
 
   highlight = {
     enable = true,

@@ -1,5 +1,6 @@
 local options = {
-  ignore = "^$"
+  ignore = "^$",
+  italic = true,
 }
 
 return options

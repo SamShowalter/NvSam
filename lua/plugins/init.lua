@@ -1,7 +1,6 @@
 -- All plugins have lazy=true by default,to load a plugin on startup just lazy=false
 -- List of all default plugins & their definitions
 local default_plugins = {
-
   "nvim-lua/plenary.nvim",
 
   {
@@ -140,9 +139,18 @@ local default_plugins = {
     init = function()
       require("core.utils").lazy_load "nvim-lspconfig"
     end,
+    dependencies = {
+      -- format & linting
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require "plugins.configs.null-ls"
+        end,
+      },
+    },
     config = function()
       require "plugins.configs.lspconfig"
-    end,
+    end, -- Override to setup mason-lspconfig
   },
 
   -- load luasnips + cmp related in insert mode only
@@ -293,10 +301,20 @@ local default_plugins = {
       require("yanky").setup({
         highlight = {
           timer = 150,
-        },    
+        },
       })
     end,
-    
+  },
+
+  -- Better escape
+  {
+    "max397574/better-escape.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup({
+        mapping = {"jk"},
+      })
+    end,
   },
 
   -- Leaping around text

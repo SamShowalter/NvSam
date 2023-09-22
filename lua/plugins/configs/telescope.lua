@@ -46,6 +46,10 @@ local options = {
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
       n = { ["q"] = require("telescope.actions").close },
+      i = {
+        ["<C-j>"] = require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_worse,
+        ["<C-k>"] = require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_better,
+      }
     },
   },
 

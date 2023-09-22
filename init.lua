@@ -2,11 +2,11 @@ DOT_ROOT = "/Users/samuelshowalter/documents/repos/dotfiles/nvim"
 WIKI_DIR = DOT_ROOT .. "/vim-plugins/vimwiki"
 require "core"
 
-local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
+-- local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
 
-if custom_init_path then
-  dofile(custom_init_path)
-end
+-- if custom_init_path then
+--   dofile(custom_init_path)
+-- end
 
 require("core.utils").load_mappings()
 

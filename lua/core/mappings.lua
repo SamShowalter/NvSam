@@ -28,7 +28,7 @@ M.general = {
     -- nnoremap <Leader>ud :cd ..<CR>
 
     -- Better copy and pasting (leader neeeds to not be remapped)
-    ["<leader>d"] = {"d", "Copying content with standard d"},
+    ["<leader>d"] = {"d", "Copying content with standard d", var_noremap},
     ["d"] = {'"_d', "Delete content with black hole register", var_noremap},
     ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
     ["c"] = {'"_c', "Change content with black hole register", var_noremap},
@@ -94,7 +94,7 @@ M.general = {
   v = {
 
     -- Better copy and pasting (leader neeeds to not be remapped)
-    ["<leader>d"] = {"d", "Copying content with standard d"},
+    ["<leader>d"] = {"d", "Copying content with standard d", var_noremap},
     ["d"] = {'"_d', "Delete content with black hole register", var_noremap},
     ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
     ["c"] = {'"_c', "Change content with black hole register", var_noremap},
@@ -335,6 +335,8 @@ M.telescope = {
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
+    -- ["<C-j>"] = {require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_worse, "Toggle results down"},
+    -- ["<C-k>"] = {require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_better, "Toggle results up"},
   },
 }
 

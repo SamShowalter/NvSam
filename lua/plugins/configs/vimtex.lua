@@ -7,7 +7,7 @@ vim.g.vimtex_view_method = 'skim'
 -- let g:vimtex_quickfix = 0
 vim.g.vimtex_quickfix_bibtex = {enabled= 1}
 vim.g.vimtex_mappings_enabled = 1
-vim.opt.conceallevel=1
+-- vim.opt.conceallevel=1
 vim.g.tex_conceal='abdmg'
 vim.g.tex_flavor = 'xelatex'
 vim.g.Tex_CompileRule_pdf='xelatex --interaction=nonstopmode $*'
