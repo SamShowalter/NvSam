@@ -234,7 +234,10 @@ local default_plugins = {
     end,
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "nvimtree")
-      require("nvim-tree").setup(opts)
+      require("nvim-tree").setup({
+        opts,
+        on_attach = Nvimtree_on_attach,
+      })
     end,
   },
 
@@ -342,15 +345,6 @@ local default_plugins = {
    'mg979/vim-visual-multi' ,
     lazy = false,
   },
-
-  -- -- Tags for searching telescope
-  -- {
-  --   "ludovicchabant/vim-gutentags",
-  --   init = function()
-  --     require("plugins.configs.gutentags")
-  --   end,
-  --   lazy = false,
-  -- },
 
   --Window resizer
   {

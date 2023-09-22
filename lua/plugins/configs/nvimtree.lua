@@ -18,10 +18,6 @@ local options = {
     width = 30,
     preserve_window_proportions = true,
   },
-  git = {
-    enable = false,
-    ignore = true,
-  },
   filesystem_watchers = {
     enable = true,
   },
@@ -75,5 +71,17 @@ local options = {
     },
   },
 }
+
+function Nvimtree_on_attach(bufnr)
+    -- default mappings
+    local api = require "nvim-tree.api"
+    local function opts(desc)
+      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+    api.config.mappings.default_on_attach(bufnr)
+    -- custom mappings
+    vim.keymap.set('n', '<C-e>', "<cmd> WinResizerStartResize<CR>", opts('Up'))
+end
+
 
 return options
