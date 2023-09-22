@@ -206,6 +206,9 @@ local default_plugins = {
     init = function()
       require("core.utils").load_mappings "comment"
     end,
+    opts = function()
+     return require "plugins.configs.comment"
+    end,
     config = function(_, opts)
       require("Comment").setup(opts)
     end,
@@ -307,7 +310,6 @@ local default_plugins = {
     lazy = false,
   },
 
-  
   -- Latex Compile
   {
     "lervag/vimtex",
@@ -316,14 +318,13 @@ local default_plugins = {
     end,
     lazy = false,
   },
-  
+
   -- Multiple cursors
   {
    'mg979/vim-visual-multi' ,
     lazy = false,
   },
-  
-  
+
   -- Vim Wiki
   {
     "vimwiki/vimwiki",
@@ -331,6 +332,33 @@ local default_plugins = {
       require("plugins.configs.vimwiki")
     end,
 
+    lazy = false,
+  },
+
+  -- Eyeliner for better jumping
+  {
+    "jinh0/eyeliner.nvim",
+    init = function()
+      require('eyeliner').setup({
+        highlight_on_key = true,
+        dim = true,
+    })
+    end,
+    lazy = false,
+  },
+
+  -- Tags for searching telescope
+  {
+    "ludovicchabant/vim-gutentags",
+    init = function()
+      require("plugins.configs.gutentags")
+    end,
+    lazy = false,
+  },
+
+  --Window resizer
+  {
+    "simeji/winresizer",
     lazy = false,
   },
 

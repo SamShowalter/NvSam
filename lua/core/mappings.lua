@@ -1,6 +1,9 @@
--- n, v, i, t = mode names
-
+-- n, v, i, t = mode names 
 local M = {}
+-- local silent = {silent=true}
+local var_noremap = {noremap=true}
+local var_noremap_silent = {silent=true, noremap=true}
+
 
 M.general = {
   i = {
@@ -8,16 +11,15 @@ M.general = {
     -- ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
     -- ["<C-e>"] = { "<End>", "End of line" },
 
-    -- navigate within insert mode
-    ["<C-h>"] = { "<Left>", "Move left" },
-    ["<C-l>"] = { "<Right>", "Move right" },
-    ["<C-j>"] = { "<Down>", "Move down" },
-    ["<C-k>"] = { "<Up>", "Move up" },
+    -- -- navigate within insert mode
+    -- ["<C-h>"] = { "<Left>", "Move left" },
+    -- ["<C-l>"] = { "<Right>", "Move right" },
+    -- ["<C-j>"] = { "<Down>", "Move down" },
+    -- ["<C-k>"] = { "<Up>", "Move up" }, 
   },
 
   n = {
 
-    
     -- Directory change information
     -- " Change current working directory to the current file 
     -- map <Leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -25,31 +27,29 @@ M.general = {
     -- " Move up a directory
     -- nnoremap <Leader>ud :cd ..<CR>
 
-    -- Better copy and pasting
+    -- Better copy and pasting (leader neeeds to not be remapped)
     ["<leader>d"] = {"d", "Copying content with standard d"},
-    ["<leader>D"] = {"D", "Copying content with standard D"},
-    ["d"] = {"_d", "Delete content with black hole register"},
-    ["D"] = {"_D", "Delete content with black hole register"},
-    ["x"] = {"_x", "Delete letter with black hole register"},
-    ["x"] = {"_c", "Change content with black hole register"},
+    ["d"] = {'"_d', "Delete content with black hole register", var_noremap},
+    ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
+    ["c"] = {'"_c', "Change content with black hole register", var_noremap},
 
     -- Copy filepaths
     ["<Leader>pc"] = {"let @+=expand('%:t')<CR>", "Copy filepath to use later"},
-    
+
     -- Easy Quitting
-    ["<leader>qq"] = {":qa!<CR>", "Quickly close out of all files"},
+    ["<leader>qq"] = {":qa!<CR>", "Quickly close out of all files", var_noremap},
 
     -- Tab text over quickly
-    [">"] = {">>", "Quickly tab text right"},
-    ["<"] = {"<<", "Quickly tab text left"},
+    [">"] = {">>", "Quickly tab text right", var_noremap},
+    ["<"] = {"<<", "Quickly tab text left", var_noremap},
 
     -- Close files to right and left
     ["<Leader>op"] = {"<C-l>:q!<CR>", "Close right vertical pane"},
     ["<Leader>po"] = {"<C-h>:q!<CR>", "Close left vertical pane"},
 
     --Clear highlighting
-    ["<leader><CR>"] = { ":noh <CR>", "Clear highlights" },
-    
+    ["<leader><CR>"] = { ":noh <CR>", "Clear highlights", var_noremap_silent},
+
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
@@ -93,18 +93,18 @@ M.general = {
 
   v = {
 
-    --Make visual copy and pasting better
+    -- Better copy and pasting (leader neeeds to not be remapped)
     ["<leader>d"] = {"d", "Copying content with standard d"},
-    ["d"] = {"_d", "Delete content with black hole register"},
-    ["x"] = {"_x", "Delete letter with black hole register"},
-    ["x"] = {"_c", "Change content with black hole register"},
-    
+    ["d"] = {'"_d', "Delete content with black hole register", var_noremap},
+    ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
+    ["c"] = {'"_c', "Change content with black hole register", var_noremap},
+
     -- visual shifting of blocks for easier use 
-    ["J"] = {":m '>1<CR>gv=gv", "Visual shifting of lines up"},
-    ["K"] = {":m '<-2<CR>gv=gv", "Visual shifting of lines down"},
+    ["J"] = {":m '>1<CR>gv=gv", "Visual shifting of lines up", var_noremap},
+    ["K"] = {":m '<-2<CR>gv=gv", "Visual shifting of lines down", var_noremap},
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
-    ["<"] = { "<gv", "Indent line" },
+    ["<"] = { "<gv", "De-Indent line" },
     [">"] = { ">gv", "Indent line" },
   },
 
@@ -315,7 +315,8 @@ M.telescope = {
   n = {
     -- find
     ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
-    ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
+    ["<leader>fa"] = { "<cmd> Telescope  follow=true no_ignore=true hidden=true <CR>", "Find all" },
+    ["<leader>ft"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     -- ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
@@ -339,7 +340,7 @@ M.telescope = {
 
 M.leap = {
   plugin = true,
-  
+
   n = {
     ["<leader>lj"] = {"<cmd>lua leap_to_line_forward()<CR>", "Leap to specific line down"},
     ["<leader>lk"] = {"<cmd>lua leap_to_line_backwards()<CR>", "Leap to specific line up"},
@@ -360,7 +361,7 @@ M.nvterm = {
   },
 
   n = {
-    
+
     ["<leader>nt"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
@@ -381,14 +382,7 @@ M.whichkey = {
       end,
       "Which-key all keymaps",
     },
-    
-    -- ["<leader>wK"] = {
-    --   function()
-    --     local input = vim.fn.input "WhichKey: "
-    --     vim.cmd("WhichKey " .. input)
-    --   end,
-    --   "Which-key query lookup",
-    -- },
+
   },
 }
 
