@@ -66,5 +66,5 @@ vim.g.gutentags_ctags_exclude = {
       '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
       '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
       '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
-      'ipynb_checkpoints/*','*.ipynb',
+      'ipynb_checkpoints/*','*.ipynb', "*.wiki",
 }

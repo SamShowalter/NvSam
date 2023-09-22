@@ -8,6 +8,7 @@ require "core"
 --   dofile(custom_init_path)
 -- end
 
+require("custom.functions")
 require("core.utils").load_mappings()
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"

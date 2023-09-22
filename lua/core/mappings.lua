@@ -27,6 +27,9 @@ M.general = {
     -- " Move up a directory
     -- nnoremap <Leader>ud :cd ..<CR>
 
+    -- Compile code
+    ["<leader>cp"] = {":call CompileAll() <CR><C-h>", "Compile all code in file"},
+
     -- Better copy and pasting (leader neeeds to not be remapped)
     ["<leader>d"] = {"d", "Copying content with standard d", var_noremap},
     ["d"] = {'"_d', "Delete content with black hole register", var_noremap},
@@ -43,18 +46,29 @@ M.general = {
     [">"] = {">>", "Quickly tab text right", var_noremap},
     ["<"] = {"<<", "Quickly tab text left", var_noremap},
 
-    -- Close files to right and left
-    ["<Leader>op"] = {"<C-l>:q!<CR>", "Close right vertical pane"},
-    ["<Leader>po"] = {"<C-h>:q!<CR>", "Close left vertical pane"},
-
     --Clear highlighting
     ["<leader><CR>"] = { ":noh <CR>", "Clear highlights", var_noremap_silent},
 
     -- switch between windows
-    ["<C-h>"] = { "<C-w>h", "Window left" },
-    ["<C-l>"] = { "<C-w>l", "Window right" },
-    ["<C-j>"] = { "<C-w>j", "Window down" },
-    ["<C-k>"] = { "<C-w>k", "Window up" },
+    ["<C-h>"] = { "<C-w>h", "Window left" , var_noremap},
+    ["<C-l>"] = { "<C-w>l", "Window right", var_noremap },
+    ["<C-j>"] = { "<C-w>j", "Window down", var_noremap},
+    ["<C-k>"] = { "<C-w>k", "Window up" , var_noremap},
+
+    -- Close files to right and left
+    -- "<C-w>l :bd<CR>"
+    ["<Leader>op"] = {
+      function()
+        vim.api.nvim_feedkeys(
+          vim.api.nvim_replace_termcodes("<C-w>l", true, false, true),
+          "n", false)
+        vim.api.nvim_feedkeys(
+          vim.api.nvim_replace_termcodes(":bd!<CR>", true, false, true),
+          "n", false)
+      end, "Close right vertical pane"},
+    -- ["<Leader>oo"] = {":bd<CR>", "Close right vertical pane"},
+    -- ["<Leader>op"] = {"<leader>1p <leader>1o", "Close left vertical pane"},
+    ["<Leader>po"] = {"<C-w>h <cmd> bd! <CR>", "Close left vertical pane"},
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },

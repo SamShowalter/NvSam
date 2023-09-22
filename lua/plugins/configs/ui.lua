@@ -1,5 +1,3 @@
-local highlights = require "custom.highlights"
-
 local options = {
   theme = "onedark",
   theme_toggle = { "onedark", "one_light" },

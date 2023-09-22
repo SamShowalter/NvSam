@@ -343,13 +343,18 @@ local default_plugins = {
     lazy = false,
   },
 
-  -- Vim Wiki
-  {
-    "vimwiki/vimwiki",
-    init = function()
-      require("plugins.configs.vimwiki")
-    end,
+  -- -- Tags for searching telescope
+  -- {
+  --   "ludovicchabant/vim-gutentags",
+  --   init = function()
+  --     require("plugins.configs.gutentags")
+  --   end,
+  --   lazy = false,
+  -- },
 
+  --Window resizer
+  {
+    "simeji/winresizer",
     lazy = false,
   },
 
@@ -365,20 +370,17 @@ local default_plugins = {
     lazy = false,
   },
 
-  -- Tags for searching telescope
+
+  -- Vim Wiki
   {
-    "ludovicchabant/vim-gutentags",
+    "vimwiki/vimwiki",
     init = function()
-      require("plugins.configs.gutentags")
+      require("plugins.configs.vimwiki")
     end,
+
     lazy = false,
   },
 
-  --Window resizer
-  {
-    "simeji/winresizer",
-    lazy = false,
-  },
 
 }
 
