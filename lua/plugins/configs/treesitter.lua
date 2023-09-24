@@ -12,6 +12,7 @@ local options = {
     "c",
     "markdown",
     "markdown_inline",
+    "latex",
   },
 
   -- indent = {

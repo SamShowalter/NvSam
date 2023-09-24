@@ -1,6 +1,6 @@
 -- n, v, i, t = mode names 
 local M = {}
--- local silent = {silent=true}
+local silent = {silent=true}
 local var_noremap = {noremap=true}
 local var_noremap_silent = {silent=true, noremap=true}
 
@@ -27,12 +27,18 @@ M.general = {
     -- " Move up a directory
     -- nnoremap <Leader>ud :cd ..<CR>
 
+    -- Quickly access important files
+    -- ["<leader>vi"] = {":e $DOT_ROOT/../init.lua<CR>", "Quickly access the .vimrc file"},
+    ["<leader>zi"] = {":e $DOT_ROOT/../.zshrc<CR>", "Quickly access the .zshrc file"},
+    ["<leader>lp"] = {":e $DOT_ROOT/../.pylintrc<CR>:145<CR>", "Quickly access the .pylintrc file"},
+
     -- Compile code
     ["<leader>cp"] = {":call CompileAll() <CR><C-h>", "Compile all code in file"},
 
     -- Better copy and pasting (leader neeeds to not be remapped)
     ["<leader>d"] = {"d", "Copying content with standard d", var_noremap},
     ["d"] = {'"_d', "Delete content with black hole register", var_noremap},
+    ["D"] = {'"_D', "Delete content with black hole register", var_noremap},
     ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
     ["c"] = {'"_c', "Change content with black hole register", var_noremap},
 
@@ -65,20 +71,16 @@ M.general = {
         vim.api.nvim_feedkeys(
           vim.api.nvim_replace_termcodes(":bd!<CR>", true, false, true),
           "n", false)
-      end, "Close right vertical pane"},
+      end, "Close right vertical pane", silent},
     -- ["<Leader>oo"] = {":bd<CR>", "Close right vertical pane"},
     -- ["<Leader>op"] = {"<leader>1p <leader>1o", "Close left vertical pane"},
-    ["<Leader>po"] = {"<C-w>h <cmd> bd! <CR>", "Close left vertical pane"},
+    ["<Leader>po"] = {"<C-w>h <cmd> bd! <CR>", "Close left vertical pane", silent},
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
-
-    -- line numbers
-    -- ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
-    -- ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -110,6 +112,7 @@ M.general = {
     -- Better copy and pasting (leader neeeds to not be remapped)
     ["<leader>d"] = {"d", "Copying content with standard d", var_noremap},
     ["d"] = {'"_d', "Delete content with black hole register", var_noremap},
+    ["D"] = {'"_D', "Delete content with black hole register", var_noremap},
     ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
     ["c"] = {'"_c', "Change content with black hole register", var_noremap},
 
@@ -360,6 +363,10 @@ M.leap = {
     ["<leader>lj"] = {"<cmd>lua leap_to_line_forward()<CR>", "Leap to specific line down"},
     ["<leader>lk"] = {"<cmd>lua leap_to_line_backwards()<CR>", "Leap to specific line up"},
   },
+  v = {
+    ["<leader>lj"] = {"<cmd>lua leap_to_line_forward()<CR>", "Leap to specific line down"},
+    ["<leader>lk"] = {"<cmd>lua leap_to_line_backwards()<CR>", "Leap to specific line up"},
+  }
 }
 
 M.nvterm = {

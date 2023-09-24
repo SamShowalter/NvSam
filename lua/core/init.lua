@@ -2,6 +2,13 @@ local opt = vim.opt
 local g = vim.g
 local config = require("core.utils").load_config()
 
+-- To keep comments from wrapping
+vim.api.nvim_create_autocmd({"BufNewFile","BufRead", "BufEnter"},
+  {
+    pattern = "*",
+    command = "set formatoptions-=cro",
+  }
+)
 
 -------------------------------------- globals -----------------------------------------
 g.nvchad_theme = config.ui.theme
@@ -46,6 +53,7 @@ opt.timeoutlen = 400
 opt.undofile = true
 opt.scrolloff = 8
 
+
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 100
 
@@ -53,6 +61,7 @@ opt.updatetime = 100
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 
+-- Map the leader key
 g.mapleader = " "
 
 -- disable some default providers

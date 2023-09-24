@@ -162,9 +162,13 @@ local default_plugins = {
         -- snippet plugin
         "L3MON4D3/LuaSnip",
         dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+        opts = {
+          history = true,
+          updateevents = "TextChanged,TextChangedI",
+          enable_autosnippets =  true,
+        },
         config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
+          require("plugins.configs.luasnip").luasnip(opts)
         end,
       },
 
@@ -375,8 +379,29 @@ local default_plugins = {
     lazy = false,
   },
 
+  -- Latex snippets
+  {
+   "iurimateus/luasnip-latex-snippets.nvim",
+    -- vimtex isn't required if using treesitter
+    requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+    config = function()
+      require'luasnip-latex-snippets'.setup(
+        {
+          use_treesitter = true,
+          allow_on_markdown = true,
+        }
+      )
+    end,
+    lazy=false,
+  },
 
+  -- Vim surround
+  {
+    "tpope/vim-surround",
+    lazy=false,
+  }
 }
+
 
 local config = require("core.utils").load_config()
 
@@ -385,3 +410,4 @@ if #config.plugins > 0 then
 end
 
 require("lazy").setup(default_plugins, config.lazy_nvim)
+
