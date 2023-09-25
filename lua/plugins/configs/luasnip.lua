@@ -38,5 +38,7 @@ end
 
 require("plugins.configs.snippets.tex_snippets")
 require("plugins.configs.snippets.python_snippets")
+require("plugins.configs.snippets.lua_snippets")
 
 return M
+
