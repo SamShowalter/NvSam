@@ -1,5 +1,4 @@
 local null_ls = require "null-ls"
-
 local b = null_ls.builtins
 
 local sources = {
@@ -10,6 +9,9 @@ local sources = {
 
   -- Lua
   b.formatting.stylua,
+
+  --python
+  b.formatting.black,
 
   -- cpp
   b.formatting.clang_format,

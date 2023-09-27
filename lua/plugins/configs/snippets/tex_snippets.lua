@@ -10,7 +10,7 @@ local utils = require("luasnip-latex-snippets.util.utils")
 local char_dict = {
   sim = {"\\"}, lim = {"\\"}, forall = {"\\"}, subset = {"\\"},
   inf = {"\\"}, text = {"\\"}, rightarrow = {"\\"}, mcal = {"\\"},
-  leq = {"\\"}, geq = {"\\"}, ll = {"\\"}, inn = {"\\"}, notin = {"\\"},
+  leq = {"\\"}, geq = {"\\"}, ll = {"\\"}, inn = {"\\", "not",}, notin = {"\\"},
   bf = {"text", "math"}, tl = {"%w+"}, bb = {"math"}, msc = {"math"},
   min = {"\\", "arg","i"}, max = {"\\", "arg","i"},
   set = {"\\","under","over"},
@@ -83,8 +83,8 @@ $0]])
 -- ===========================================================
 
 local dk_snip = ls.parser.parse_snippet({ trig = "dk", condition = utils.not_math, name = "Math" }, "$${1:${TM_SELECTED_TEXT}}$$0")
-local superscript_snip = ls.parser.parse_snippet({ trig = "tk", condition = utils.is_math, name = "Exponentiate" },"^{$1}$0")
-local sum_snip = ls.parser.parse_snippet({ trig = "sum", condition = utils.is_math, wordTrig=false, name = "Automatic sum" },"\\sum^{${1:n}}_{${2:i=1}}{0}$")
+local superscript_snip = ls.parser.parse_snippet({ trig = "tk", condition = utils.is_math, wordTrig=false,  name = "Exponentiate" },"^{$1}$0")
+local sum_snip = ls.parser.parse_snippet({ trig = "sum", condition = utils.is_math, wordTrig=false, name = "Automatic sum" },"\\sum^{${1:n}}_{${2:i=1}}$0")
 local cref_snip = ls.parser.parse_snippet({ trig = "cref", name = "C reference" },"\\Cref{$1}$0")
 local vsp_snip = ls.parser.parse_snippet({ trig = "vsp", name = "Vertical space" },"\\vspace{$1pt}$0")
 
@@ -92,7 +92,7 @@ local vsp_snip = ls.parser.parse_snippet({ trig = "vsp", name = "Vertical space"
 -- GREEK LETTERS
 -- ===========================================================
 local greeks = {}
-local greek_lower= "alpha beta chi delta epsilon gamma iota kappa lambda mu nu omega phi pi rho sigma tau theta zeta eta"
+local greek_lower= "alpha beta chi delta epsilon gamma iota kappa lambda omega phi rho sigma tau theta zeta"
 local greek_upper= "Alpha Beta Chi Delta Epsilon Gamma Iota Kappa Lambda Mu Nu Omega Phi Pi Rho Sigma Tau Theta Zeta Eta"
 
 -- Add greek lower

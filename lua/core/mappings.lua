@@ -1,4 +1,4 @@
--- n, v, i, t = mode names 
+-- n, v, i, t = mode names
 local M = {}
 local silent = {silent=true}
 local var_noremap = {noremap=true}
@@ -15,17 +15,21 @@ M.general = {
     -- ["<C-h>"] = { "<Left>", "Move left" },
     -- ["<C-l>"] = { "<Right>", "Move right" },
     -- ["<C-j>"] = { "<Down>", "Move down" },
-    -- ["<C-k>"] = { "<Up>", "Move up" }, 
+    -- ["<C-k>"] = { "<Up>", "Move up" },
   },
 
   n = {
 
     -- Directory change information
-    -- " Change current working directory to the current file 
+    -- " Change current working directory to the current file
     -- map <Leader>cd :cd %:p:h<CR>:pwd<CR>
     --
     -- " Move up a directory
     -- nnoremap <Leader>ud :cd ..<CR>
+
+    -- Make vertical and horizontal splits
+    ["<leader>nv"] = {":vs<CR> <C-l>", "Make new vertical split to right and move to it"},
+    ["<leader>nh"] = {":sp<CR> <C-j>", "Make new horizontal split below and move to it"},
 
     -- Quickly access important files
     -- ["<leader>vi"] = {":e $DOT_ROOT/../init.lua<CR>", "Quickly access the .vimrc file"},
@@ -60,6 +64,13 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "Window right", var_noremap },
     ["<C-j>"] = { "<C-w>j", "Window down", var_noremap},
     ["<C-k>"] = { "<C-w>k", "Window up" , var_noremap},
+
+    -- Trim trailing whitespace
+    ["<leader>tw"] = {
+        function()
+          require("custom.functions").trim_trailing_whitespaces()
+        end,
+      "trailing whitespace"},
 
     -- Close files to right and left
     -- "<C-w>l :bd<CR>"
@@ -116,7 +127,8 @@ M.general = {
     ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
     ["c"] = {'"_c', "Change content with black hole register", var_noremap},
 
-    -- visual shifting of blocks for easier use 
+
+    -- visual shifting of blocks for easier use
     ["J"] = {":m '>1<CR>gv=gv", "Visual shifting of lines up", var_noremap},
     ["K"] = {":m '<-2<CR>gv=gv", "Visual shifting of lines down", var_noremap},
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
@@ -319,7 +331,15 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<leader>jf"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<leader>jf"] = {
+      function()
+        if require('nvim-tree.view').is_visible() then
+          vim.cmd("NvimTreeClose")
+        else
+          vim.cmd("NvimTreeFindFile")
+        end
+      end,
+    "Toggle nvimtree" },
 
     -- focus
     -- ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
@@ -394,6 +414,15 @@ M.nvterm = {
   },
 }
 
+M.vimtex = {
+  plugin = true,
+
+  n = {
+    ["<leader>vxc"] = {"<cmd> VimtexCompile<CR>", "Compile Vimtex"},
+    ["<leader>jx"] = {"<cmd> VimtexView<CR>", "View Current Location Vimtex"},
+  },
+}
+
 M.whichkey = {
   plugin = true,
 
@@ -428,6 +457,48 @@ M.blankline = {
       "Jump to current context",
     },
   },
+}
+
+M.harpoon = {
+	plugin = true,
+  n = {
+    ["gj"] = {
+      function()
+        require("harpoon.ui").nav_file(1)
+      end, "Harpoon file 1"},
+    ["gk"] = {
+      function()
+        require("harpoon.ui").nav_file(2)
+      end, "Harpoon file 2"},
+    ["gl"] = {
+      function()
+        require("harpoon.ui").nav_file(3)
+      end, "Harpoon file 3"},
+    ["g;"] = {
+      function()
+        require("harpoon.ui").nav_file(4)
+      end, "Harpoon file 4"},
+    ["<leader>af"] = {
+      function()
+        require("harpoon.mark").add_file()
+      end, "Harpoon add file"},
+    ['gh'] = {
+      function()
+        require("plugins.configs.harpoon").toggle_move()
+      end, "Harpoon toggle move"},
+    [']h'] = {
+      function()
+        require("harpoon.ui").nav_next()
+      end, "Harpoon nav next"},
+    ['[h'] = {
+      function()
+        require("harpoon.ui").nav_prev()
+      end, "Harpoon nav prev"},
+    ['gH'] = {
+      function()
+        require("harpoon.ui").toggle_quick_menu()
+      end, "Harpoon toggle menu"},
+  }
 }
 
 M.gitsigns = {

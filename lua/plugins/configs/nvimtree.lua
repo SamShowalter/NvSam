@@ -76,11 +76,11 @@ function Nvimtree_on_attach(bufnr)
     -- default mappings
     local api = require "nvim-tree.api"
     local function opts(desc)
-      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+      return { desc = "nvim-tree: " .. desc, noremap = true, silent = true, nowait = true }
     end
     api.config.mappings.default_on_attach(bufnr)
     -- custom mappings
-    vim.keymap.set('n', '<C-e>', "<cmd> WinResizerStartResize<CR>", opts('Up'))
+    vim.keymap.set('n', '<C-e>', "<cmd> WinResizerStartResize<CR>", opts("Up"))
 end
 
 

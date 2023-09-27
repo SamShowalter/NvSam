@@ -324,15 +324,66 @@ local default_plugins = {
     end,
   },
 
+  -- Vim Wiki
+  {
+    "vimwiki/vimwiki",
+    init = function()
+      require("plugins.configs.vimwiki")
+    end,
+
+    lazy = false,
+  },
+
+  --Harpoon
+  {
+    'ThePrimeagen/harpoon',
+    keys = {'gh', 'gH', ']h', '[h', },
+    dependencies = 'nvim-lua/plenary.nvim',
+    init = function()
+      require("harpoon").setup(
+        {
+          menu = {
+            width = vim.api.nvim_win_get_width(0) - 100,
+          },
+        }
+      )
+      require("core.utils").load_mappings "harpoon"
+    end,
+    lazy = false,
+ },
+
   -- Leaping around text
   {
     "ggandor/leap.nvim",
     init = function()
       require("plugins.configs.leap")
-      require("core.utils").load_mappings "leap"
       require("leap").add_default_mappings()
+      require("core.utils").load_mappings "leap"
     end,
     lazy = false,
+  },
+
+  -- Flash
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      -- { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
+      -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+   config = function()
+      require("flash").setup(
+        {
+          highlight = {backdrop=false}
+        }
+      )
+   end,
   },
 
   -- Latex Compile
@@ -340,6 +391,7 @@ local default_plugins = {
     "lervag/vimtex",
     init = function()
       require("plugins.configs.vimtex")
+      require("core.utils").load_mappings "vimtex"
     end,
     lazy = false,
   },
@@ -368,16 +420,6 @@ local default_plugins = {
     lazy = false,
   },
 
-
-  -- Vim Wiki
-  {
-    "vimwiki/vimwiki",
-    init = function()
-      require("plugins.configs.vimwiki")
-    end,
-
-    lazy = false,
-  },
 
   -- Latex snippets
   {
