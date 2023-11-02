@@ -127,6 +127,8 @@ M.general = {
     ["x"] = {'"_x', "Delete letter with black hole register", var_noremap},
     ["c"] = {'"_c', "Change content with black hole register", var_noremap},
 
+    -- Faster escape from visual mode
+    ["q"] = {"<Esc>", "Escape from visual mode", var_noremap},
 
     -- visual shifting of blocks for easier use
     ["J"] = {":m '>1<CR>gv=gv", "Visual shifting of lines up", var_noremap},
@@ -151,14 +153,14 @@ M.tabufline = {
 
   n = {
     -- cycle through buffers
-    ["<leader>r"] = {
+    ["<C-S-k>"] = {
       function()
         require("nvchad.tabufline").tabuflineNext()
       end,
       "Goto next buffer",
     },
 
-    ["<leader>e"] = {
+    ["<C-S-j>"] = {
       function()
         require("nvchad.tabufline").tabuflinePrev()
       end,
@@ -354,7 +356,7 @@ M.telescope = {
     ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
     ["<leader>fa"] = { "<cmd> Telescope follow=true no_ignore=true hidden=true <CR>", "Find all" },
     ["<leader>ft"] = { "<cmd> Telescope lsp_document_symbols symbols=module,class,function,method <CR>", "Find Tags" },
-    ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
+    ["<leader>b"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fw"] = { "<cmd> Telescope find_files search_dirs={'" .. WIKI_DIR .. "'} <CR>", "Find Vim Wiki Files" },
