@@ -110,11 +110,16 @@ local options = {
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
+    -- {name = "omni" },
   },
 }
 
 if cmp_style ~= "atom" and cmp_style ~= "atom_colored" then
   options.window.completion.border = border "CmpBorder"
 end
+
+-- vim.cmd [[
+-- autocmd FileType tex lua require('cmp').setup.buffer { sources = { { name = 'omni' } } }
+-- ]]
 
 return options

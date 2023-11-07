@@ -443,11 +443,36 @@ local default_plugins = {
     lazy=false,
   },
 
+  --Markdown preview
+  {
+  "iamcco/markdown-preview.nvim",
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  build = "cd app && yarn install",
+  init = function()
+    vim.g.mkdp_filetypes = { "markdown" }
+  end,
+  ft = { "markdown" },
+  },
+
   -- Vim surround
   {
     "tpope/vim-surround",
     lazy=false,
-  }
+  },
+
+  -- Lazy
+  {
+   "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+     },
+  },
 }
 
 

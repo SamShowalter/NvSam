@@ -39,6 +39,8 @@ end
 require("plugins.configs.snippets.tex_snippets")
 require("plugins.configs.snippets.python_snippets")
 require("plugins.configs.snippets.lua_snippets")
+require("plugins.configs.snippets.markdown_snippets")
+-- require("luasnip").filetype_extend("md", {"vimwiki"})
 
 return M
 

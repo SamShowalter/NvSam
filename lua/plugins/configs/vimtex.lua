@@ -3,7 +3,7 @@
 -- ===========================================================
 
 -- Set up backend for vimtex 
-vim.g.vimtex_view_method = 'skim' 
+vim.g.vimtex_view_method = 'skim'
 -- let g:vimtex_quickfix = 0
 vim.g.vimtex_quickfix_bibtex = {enabled= 1}
 vim.g.vimtex_mappings_enabled = 1
